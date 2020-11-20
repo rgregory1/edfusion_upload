@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "/Users/rgregory/Documents/Github/edfusion_upload/venv/bin/python3",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}
