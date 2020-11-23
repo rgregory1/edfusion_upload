@@ -9,7 +9,12 @@ __pycache__/
 # my credentials files
 my_credentials/
 credentials.py
-resources/
+
+
+# sensitive files
+resources/*
+incoming_files/*
+outgoing_files*
 
 # Distribution / packaging
 .Python
