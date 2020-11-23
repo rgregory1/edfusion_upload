@@ -14,7 +14,7 @@ credentials.py
 # sensitive files
 resources/*
 incoming_files/*
-outgoing_files*
+outgoing_files/*
 
 # Distribution / packaging
 .Python
