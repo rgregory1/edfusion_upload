@@ -1,8 +1,14 @@
 import paramiko
 from paramiko import sftp_client
-import time
+import datetime
 import credentials
 from gr_prog_proc import process_gradeprog
+
+# get timestamp for log
+temp_timestamp = str(datetime.datetime.now())
+print(2 * "\n")
+print(temp_timestamp)
+
 
 # setup connection
 
@@ -25,6 +31,7 @@ def grab_file(file_name):
 
     sftp_client.close()
     ssh.close()
+    print(f"Retrieved {file_name} from remote")
 
 
 grab_file("03_5_PS_GradeProg.csv")
@@ -45,6 +52,6 @@ sftp_client = ssh.open_sftp()
 
 
 sftp_client.put("outgoing_files/03_5_PS_GradeProg.csv", "03_5_PS_GradeProg.csv")
-
+print("Put file on remote server")
 sftp_client.close()
 ssh.close()
