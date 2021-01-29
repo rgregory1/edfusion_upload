@@ -27,6 +27,9 @@ def grab_file(file_name):
     )
     sftp_client = ssh.open_sftp()
 
+    files = sftp_client.listdir()
+    print(files)
+
     sftp_client.get("/public/" + file_name, "incoming_files/" + file_name)
 
     sftp_client.close()
