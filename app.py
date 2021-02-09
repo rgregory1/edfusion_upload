@@ -3,6 +3,7 @@ from paramiko import sftp_client
 import datetime
 import credentials
 from gr_prog_proc import process_gradeprog
+from ps_att_proc import process_att
 
 # get timestamp for log
 temp_timestamp = str(datetime.datetime.now())
@@ -13,7 +14,7 @@ print(temp_timestamp)
 # setup connection
 
 
-def grab_file(file_name):
+def grab_files(file_list):
 
     # Get files from RaspberryPi
 
@@ -30,17 +31,19 @@ def grab_file(file_name):
     files = sftp_client.listdir()
     print(files)
 
-    sftp_client.get("/public/" + file_name, "incoming_files/" + file_name)
+    for file_name in file_list:
+        sftp_client.get("/public/" + file_name, "incoming_files/" + file_name)
+        print(f"Retrieved {file_name} from remote")
 
     sftp_client.close()
     ssh.close()
-    print(f"Retrieved {file_name} from remote")
 
 
-grab_file("03_5_PS_GradeProg.csv")
+grab_files(["03_7_PS_Att.csv"])
 
-process_gradeprog()
 
+# process_gradeprog()
+process_att()
 
 # Put files to edfusion
 ssh = paramiko.SSHClient()
@@ -54,7 +57,7 @@ ssh.connect(
 sftp_client = ssh.open_sftp()
 
 
-sftp_client.put("outgoing_files/03_5_PS_GradeProg.csv", "03_5_PS_GradeProg.csv")
+sftp_client.put("outgoing_files/03_7_PS_Att.csv", "03_7_PS_Att.csv")
 print("Put file on remote server")
 sftp_client.close()
 ssh.close()
