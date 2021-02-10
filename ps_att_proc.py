@@ -10,7 +10,8 @@ def special_present(stu_num, df):
         (df["PERMNUMBER"] == stu_num)
         & (df["DAILY_STATUS"] == "ABS")
         & (df["ABSCATID"].isnull())
-    ]
+    ].copy()
+
     df_changes["DAILY_STATUS"].replace("ABS", "PRS", inplace=True)
     df_changes["DSID_VALUE"].fillna("1", inplace=True)
     return df_changes
