@@ -42,4 +42,4 @@ def process_att():
     print("exporting ps att")
     final_df.to_csv("outgoing_files/03_7_PS_Att.csv", index=False)
 
-    print("finished")
+    print("finished processing att file")

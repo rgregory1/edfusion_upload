@@ -58,6 +58,24 @@ sftp_client = ssh.open_sftp()
 
 
 sftp_client.put("outgoing_files/03_7_PS_Att.csv", "03_7_PS_Att.csv")
-print("Put file on remote server")
+print("Put file on edfusion remote server")
+sftp_client.close()
+ssh.close()
+
+
+# Put files to co office sftp server
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(
+    hostname=credentials.pi_host,
+    username=credentials.pi_user,
+    password=credentials.pi_pass,
+    port=22,
+)
+sftp_client = ssh.open_sftp()
+
+
+sftp_client.put("outgoing_files/03_7_PS_Att.csv", "public/03_7_PS_Att_fixed.csv")
+print("Put file on co sftp server")
 sftp_client.close()
 ssh.close()
