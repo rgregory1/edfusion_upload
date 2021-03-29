@@ -39,10 +39,10 @@ def grab_files(file_list):
     ssh.close()
 
 
-grab_files(["03_7_PS_Att.csv"])
+grab_files(["03_7_PS_Att.csv", "03_5_PS_GradeProg.csv"])
 
 
-# process_gradeprog()
+process_gradeprog()
 process_att()
 
 # Put files to edfusion
@@ -58,6 +58,7 @@ sftp_client = ssh.open_sftp()
 
 
 sftp_client.put("outgoing_files/03_7_PS_Att.csv", "03_7_PS_Att.csv")
+sftp_client.put("outgoing_files/03_5_PS_GradeProg.csv", "03_5_PS_GradeProg.csv")
 print("Put file on edfusion remote server")
 sftp_client.close()
 ssh.close()
@@ -76,6 +77,9 @@ sftp_client = ssh.open_sftp()
 
 
 sftp_client.put("outgoing_files/03_7_PS_Att.csv", "public/03_7_PS_Att_fixed.csv")
+sftp_client.put(
+    "outgoing_files/03_5_PS_GradeProg.csv", "public/03_5_PS_GradeProg_fixed.csv"
+)
 print("Put file on co sftp server")
 sftp_client.close()
 ssh.close()
